@@ -3,51 +3,40 @@ import 'package:equatable/equatable.dart';
 enum LoginStatus { initial, loading, success, failure }
 
 class LoginState extends Equatable {
-  final String input1;
-  final String input2;
-  final bool isInput1Changed;
-  final bool isInput2Changed;
+  final String email;
+  final String password;
+  final bool isEmailChanged;
+  final bool isPasswordChanged;
   final bool isValid;
   final LoginStatus status;
 
-  LoginState({
-    required this.input1,
-    required this.input2,
-    required this.isInput1Changed,
-    required this.isInput2Changed,
-    required this.isValid,
-    required this.status,
+  const LoginState({
+    this.email = '',
+    this.password = '',
+    this.isEmailChanged = false,
+    this.isPasswordChanged= false,
+    this.isValid = false,
+    this.status = LoginStatus.initial,
   });
 
-  factory LoginState.initial() {
-    return LoginState(
-      input1: '',
-      input2: '',
-      isInput1Changed: false,
-      isInput2Changed: false,
-      isValid: false,
-      status: LoginStatus.initial,
-    );
-  }
-
   LoginState copyWith({
-    String? input1,
-    String? input2,
-    bool? isInput1Changed,
-    bool? isInput2Changed,
+    String? email,
+    String? password,
+    bool? isEmailChanged,
+    bool? isPasswordChanged,
     bool? isValid,
     LoginStatus? status,
   }) {
     return LoginState(
-      input1: input1 ?? this.input1,
-      input2: input2 ?? this.input2,
-      isInput1Changed: isInput1Changed ?? this.isInput1Changed,
-      isInput2Changed: isInput2Changed ?? this.isInput2Changed,
+      email: email ?? this.email,
+      password: password ?? this.password,
+      isEmailChanged: isEmailChanged ?? this.isEmailChanged,
+      isPasswordChanged: isPasswordChanged ?? this.isPasswordChanged,
       isValid: isValid ?? this.isValid,
       status: status ?? this.status,
     );
   }
 
   @override
-  List<Object> get props => [input1, input2, isInput1Changed, isInput2Changed, isValid, status];
+  List<Object?> get props => [email, password, isEmailChanged, isPasswordChanged, isValid, status];
 }
